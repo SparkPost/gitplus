@@ -27,10 +27,12 @@ fi
 
 if [[ $TYPE = 'hotfix' || ${BRANCH:0:7} = "hotfix/" ]]; then
   git checkout master
+  git pull origin master
   git merge --no-ff $BRANCH
   [[ $1 = 'push' || $2 = 'push' ]] && git push origin master
 fi
 
 git checkout develop
-git merge --no-ff $BRANCH
+git pull origin develop
+git merge --no-ff $BRANCH && git branch -d $BRANCH
 [[ $1 = 'push' || $2 = 'push' ]] && git push origin develop
