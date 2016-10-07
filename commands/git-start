@@ -14,6 +14,9 @@
 #
 ##
 
+# exit on error
+set -e
+
 if [[ $1 = '' || $2 = '' ]]; then
   echo "Please specify a type (ie hotfix) and name (ie FAD-1234)"
   exit 255
