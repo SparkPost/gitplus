@@ -9,6 +9,9 @@
 # Finish current branch with hotfix strategy
 # $ git finish hotfix
 #
+# Finish current branch and also push merged branch(es) to origin
+# $ git finish [hotfix] push
+#
 ##
 
 BRANCH=$(git rev-parse --abbrev-ref HEAD)
