@@ -20,11 +20,11 @@ if [[ $BRANCH = 'master' || $BRANCH = 'develop' ]]; then
 fi
 
 if [[ $TYPE = 'hotfix' || ${BRANCH:0:7} = "hotfix/" ]]; then
-  git checkout master
-  git merge --no-ff $BRANCH
+  git checkout master || exit 255
+  git merge --no-ff $BRANCH || exit 255
   [[ $1 = 'push' || $2 = 'push' ]] && git push origin master
 fi
 
-git checkout develop
-git merge --no-ff $BRANCH
+git checkout develop || exit 255
+git merge --no-ff $BRANCH || exit 255
 [[ $1 = 'push' || $2 = 'push' ]] && git push origin develop
