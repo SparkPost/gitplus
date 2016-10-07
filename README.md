@@ -1,5 +1,4 @@
 # gitplus
-Git helper tools
 
 Generic tools and instructions for making it easier to work with git. Clone this repo somewhere on your machine.
 
