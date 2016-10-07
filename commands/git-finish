@@ -1,5 +1,16 @@
 #!/usr/bin/env sh
 
+##
+# Usage
+#
+# Finish current branch based on its name:
+# $ git finish
+#
+# Finish current branch with hotfix strategy
+# $ git finish hotfix
+#
+##
+
 BRANCH=$(git current)
 TYPE=$1
 
@@ -11,7 +22,9 @@ fi
 if [[ $TYPE = 'hotfix' || ${BRANCH:0:7} = "hotfix/" ]]; then
   git checkout master
   git merge --no-ff $BRANCH
+  [[ $1 = 'push' || $2 = 'push' ]] && git push origin master
 fi
 
 git checkout develop
 git merge --no-ff $BRANCH
+[[ $1 = 'push' || $2 = 'push' ]] && git push origin develop
