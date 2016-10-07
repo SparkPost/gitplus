@@ -1,0 +1,17 @@
+#!/usr/bin/env sh
+
+BRANCH=$(git current)
+TYPE=$1
+
+if [[ $BRANCH = 'master' || $BRANCH = 'develop' ]]; then
+  echo "ugh don't finish $BRANCH"
+  exit 255
+fi
+
+if [[ $TYPE = 'hotfix' || ${BRANCH:0:7} = "hotfix/" ]]; then
+  git checkout master
+  git merge --no-ff $BRANCH
+fi
+
+git checkout develop
+git merge --no-ff $BRANCH
