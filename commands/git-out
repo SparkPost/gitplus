@@ -3,6 +3,8 @@
 ##
 # Usage
 #
+# List commits locally that aren't present in origin remote
+# $ git out
 #
 ##
 

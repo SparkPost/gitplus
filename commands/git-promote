@@ -1,0 +1,30 @@
+#!/usr/bin/env sh
+
+##
+# Usage
+#
+# Pull from develop and master, then merge develop to master with a merge commit
+# $ git promote
+#
+# Promote develop and then push master to origin
+# $ git promote push
+#
+##
+
+git fetch > /dev/null 2>&1
+git rev-parse --verify origin/develop > /dev/null 2>&1
+DEVELOP_EXISTS=$?
+
+# exit on error
+set -e
+
+if [[ $DEVELOP_EXISTS -eq 0 ]]; then
+  git checkout develop
+  git pull origin develop
+  git checkout master
+  git pull origin master
+  git merge --no-ff develop
+  [[ $1 = 'push' ]] && git push origin master
+else
+  echo "No develop branch, can't promote develop to master"
+fi

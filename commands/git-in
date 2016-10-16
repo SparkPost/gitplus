@@ -3,6 +3,8 @@
 ##
 # Usage
 #
+# List commits in origin that aren't present locally
+# $ git in
 #
 ##
 

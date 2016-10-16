@@ -43,5 +43,5 @@ if [[ $DEVELOP_EXISTS -eq 0 ]]; then
   [[ $1 = 'push' || $2 = 'push' ]] && git push origin develop
 fi
 
-git branch -d $BRANCH       # deletes local branch
-git push origin :$BRANCH    # deletes remote branch
+git branch -d $BRANCH                   # deletes local branch
+git push origin :$BRANCH 2> /dev/null   # deletes remote branch
