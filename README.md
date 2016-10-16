@@ -51,3 +51,5 @@ $ git finish hotfix
 # Merge other branch and push merged branch(es) to origin
 $ git finish hotfix push
 ```
+
+# test
