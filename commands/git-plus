@@ -1,0 +1,17 @@
+#!/usr/bin/env sh
+
+set -e
+
+CMD=$1
+GREEN='\033[0;32m'
+NOCOLOR='\033[0m'
+
+# $ git plus upgrade
+# upgrades to latest version of gitplus
+if [[ "$CMD" == "upgrade" ]]; then
+  # cd $(echo $PATH | tr ":" "\n" | grep gitplus)
+  cd $(dirname $0)
+  git checkout master --quiet
+  git pull origin master --quiet
+  echo "\n${GREEN}👍  your gitplus is up to date with the latest from origin/master${NOCOLOR}\n"
+fi
