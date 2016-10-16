@@ -14,6 +14,10 @@
 #
 ##
 
+git fetch > /dev/null 2>&1
+git rev-parse --verify origin/develop > /dev/null 2>&1
+DEVELOP_EXISTS=$?
+
 # exit on error
 set -e
 
@@ -25,14 +29,19 @@ if [[ $BRANCH = 'master' || $BRANCH = 'develop' ]]; then
   exit 255
 fi
 
-if [[ $TYPE = 'hotfix' || ${BRANCH:0:7} = "hotfix/" ]]; then
+if [[ $TYPE = 'hotfix' || ${BRANCH:0:7} = "hotfix/" || $DEVELOP_EXISTS -ne 0 ]]; then
   git checkout master
   git pull origin master
   git merge --no-ff $BRANCH
   [[ $1 = 'push' || $2 = 'push' ]] && git push origin master
 fi
 
-git checkout develop
-git pull origin develop
-git merge --no-ff $BRANCH && git branch -d $BRANCH
-[[ $1 = 'push' || $2 = 'push' ]] && git push origin develop
+if [[ $DEVELOP_EXISTS -eq 0 ]]; then
+  git checkout develop
+  git pull origin develop
+  git merge --no-ff $BRANCH
+  [[ $1 = 'push' || $2 = 'push' ]] && git push origin develop
+fi
+
+git branch -d $BRANCH       # deletes local branch
+git push origin :$BRANCH    # deletes remote branch

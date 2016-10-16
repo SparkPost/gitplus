@@ -1,0 +1,15 @@
+#!/usr/bin/env sh
+
+##
+# Usage
+#
+#
+##
+
+# exit on error
+set -e
+
+BRANCH=$(git rev-parse --abbrev-ref HEAD)
+
+git fetch origin
+git log origin/$BRANCH..$BRANCH
