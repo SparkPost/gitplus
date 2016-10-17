@@ -4,6 +4,7 @@ set -e
 
 CMD=$1
 GREEN='\033[0;32m'
+BLUE='\033[0;36m'
 NOCOLOR='\033[0m'
 
 # $ git plus upgrade
@@ -12,6 +13,14 @@ if [[ "$CMD" == "upgrade" ]]; then
   # cd $(echo $PATH | tr ":" "\n" | grep gitplus)
   cd $(dirname $0)
   git checkout master --quiet
+  git diff origin/master
   git pull origin master --quiet
   echo "\n${GREEN}👍  your gitplus is up to date with the latest from origin/master${NOCOLOR}\n"
+fi
+
+ECHOBLUE=`echo ${BLUE}`
+ECHONC=`echo ${NOCOLOR}`
+
+if [[ "$CMD" == "help" ]]; then
+  cat $(dirname $0)/../README.md | sed -e "s/#\{2,5\} \(.*\)/$ECHOBLUE\1$ECHONC/"
 fi

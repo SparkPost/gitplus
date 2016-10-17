@@ -1,0 +1,1 @@
+open $(git config --get remote.origin.url | sed -e 's/git@/https:\/\//' -e 's/github.com:/github.com\//' -e 's/.git$//')

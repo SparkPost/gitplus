@@ -12,6 +12,12 @@ export PATH=$PATH:<path/to/gitplus>/commands
 
 Once added, you'll probably need to source your profile file or start a new terminal window. Then you'll have access to the following commands.
 
+#### git plus
+
+Run **git plus upgrade** to easily pull the latest of this repo's origin/master branch to your machine.
+
+**git plus help** will cat the contents of this README
+
 #### git start
 
 Sort of like "flow <type> start <name>", but slightly different just to be confusing.
@@ -31,7 +37,8 @@ $ git start whatever FAD-1234 master
 
 #### git finish
 
-Does a --no-ff merge to master (if hotfix) and develop.
+Does a --no-ff merge to master (if hotfix) and develop. Will also work in repos that don't have a develop
+branch by merging to master by default.
 
 Specify "push" as the last argument to auto-push merged branch(es).
 
@@ -52,4 +59,40 @@ $ git finish hotfix
 $ git finish hotfix push
 ```
 
-# test
+#### git promote
+
+Merges develop into master locally, using a --no-ff merge to create an explicit merge commit.
+
+Specify "push" as the last argument to auto-push master after merge.
+
+```shell
+# Merge develop to master
+$ git promote
+
+# Also push master to origin
+$ git promote push
+```
+
+#### git in
+
+List commits on your current branch in the `origin` remote that aren't present locally.
+
+```shell
+$ git in
+```
+
+#### git out
+
+List commits on your current branch locally that are not in the `origin` remote.
+
+```shell
+$ git out
+```
+
+#### git heads
+
+lol nah jk
+
+#### git open
+
+Opens the current GitHub repo in your browser. No auth required because the browser does auth for you.
