@@ -2,6 +2,11 @@
 
 Generic tools and instructions for making it easier to work with git. Clone this repo somewhere on your machine.
 
+## Good links:
+
+* https://git-scm.com/documentation
+* http://ohshitgit.com/
+
 ## Custom commands
 
 To use these, you need to add them to your $PATH. Add something like this to your `~/.profile` or `~/.bash_profile` or whatever:
