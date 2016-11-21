@@ -12,13 +12,12 @@
 ##
 
 git fetch > /dev/null 2>&1
-git rev-parse --verify origin/develop > /dev/null 2>&1
-DEVELOP_EXISTS=$?
+DEVELOP_EXISTS=$(git ls-remote | grep '/heads/develop' | wc -l)
 
 # exit on error
 set -e
 
-if [[ $DEVELOP_EXISTS -eq 0 ]]; then
+if [[ $DEVELOP_EXISTS -eq 1 ]]; then
   git checkout develop
   git pull origin develop
   git checkout master
