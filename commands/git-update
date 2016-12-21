@@ -27,7 +27,13 @@ fi
 
 git fetch  # get new stuff
 
-if [[ ${BRANCH:0:7} = "hotfix/" || $DEVELOP_EXISTS -eq 0 || $BRANCH = 'develop' ]]; then
+if [[ ${BRANCH:0:8} = "feature/" || $DEVELOP_EXISTS -eq 1 ]]; then
+ if [[ $TYPE = 'rebase' ]]; then
+    git rebase origin/develop
+  else
+    git merge --no-ff origin/develop
+  fi
+else
   if [[ $TYPE = 'rebase' ]]; then
     git rebase origin/master
   else
@@ -35,10 +41,3 @@ if [[ ${BRANCH:0:7} = "hotfix/" || $DEVELOP_EXISTS -eq 0 || $BRANCH = 'develop' 
   fi
 fi
 
-if [[ $DEVELOP_EXISTS -eq 1 ]]; then
-  if [[ $TYPE = 'rebase' ]]; then
-    git rebase origin/develop
-  else
-    git merge --no-ff origin/develop
-  fi
-fi
