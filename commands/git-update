@@ -31,13 +31,13 @@ if [[ ${BRANCH:0:8} = "feature/" || $DEVELOP_EXISTS -eq 1 ]]; then
  if [[ $TYPE = 'rebase' ]]; then
     git rebase origin/develop
   else
-    git merge --no-ff origin/develop
+    git merge origin/develop
   fi
 else
   if [[ $TYPE = 'rebase' ]]; then
     git rebase origin/master
   else
-    git merge --no-ff origin/master
+    git merge origin/master
   fi
 fi
 
