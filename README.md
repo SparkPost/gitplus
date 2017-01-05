@@ -78,6 +78,20 @@ $ git promote
 $ git promote push
 ```
 
+#### git update
+
+Merges master or develop into your current branch depending on your branch type and if there is a develop branch available.  It will also merge master into develop if on the develop branch.
+
+Specify "rebase" to rebase the changes rather than merge them.
+
+```shell
+# Merge develop or master into your branch
+$ git update
+
+# Rebase develop or master into your branch
+$ git update rebase
+```
+
 #### git in
 
 List commits on your current branch in the `origin` remote that aren't present locally.
