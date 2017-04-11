@@ -28,18 +28,18 @@ if [[ $BRANCH = 'master' || $BRANCH = 'develop' ]]; then
   exit 255
 fi
 
-if [[ $TYPE = 'hotfix' || ${BRANCH:0:7} = "hotfix/" || $DEVELOP_EXISTS -eq 0 ]]; then
-  git checkout master
-  git pull origin master
-  git merge --no-ff $BRANCH
-  [[ $1 = 'push' || $2 = 'push' ]] && git push origin master
-fi
-
 if [[ $DEVELOP_EXISTS -eq 1 ]]; then
   git checkout develop
   git pull origin develop
   git merge --no-ff $BRANCH
   [[ $1 = 'push' || $2 = 'push' ]] && git push origin develop
+fi
+
+if [[ $TYPE = 'hotfix' || ${BRANCH:0:7} = "hotfix/" || $DEVELOP_EXISTS -eq 0 ]]; then
+  git checkout master
+  git pull origin master
+  git merge --no-ff $BRANCH
+  [[ $1 = 'push' || $2 = 'push' ]] && git push origin master
 fi
 
 git branch -d $BRANCH                   # deletes local branch
