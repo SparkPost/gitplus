@@ -6,16 +6,9 @@
 # Finish current branch based on its name:
 # $ git finish
 #
-# Finish current branch with hotfix strategy
-# $ git finish hotfix
-#
-# Finish current branch and also push merged branch(es) to origin
-# $ git finish [hotfix] push
-#
 ##
 
 git fetch > /dev/null 2>&1
-DEVELOP_EXISTS=$(git ls-remote | grep '/heads/develop' | wc -l)
 
 # exit on error
 set -e
@@ -23,24 +16,15 @@ set -e
 BRANCH=$(git rev-parse --abbrev-ref HEAD)
 TYPE=$1
 
-if [[ $BRANCH = 'master' || $BRANCH = 'develop' ]]; then
+if [[ $BRANCH = 'master' ]]; then
   echo "ugh don't finish $BRANCH"
   exit 255
 fi
 
-if [[ $TYPE = 'hotfix' || ${BRANCH:0:7} = "hotfix/" || $DEVELOP_EXISTS -eq 0 ]]; then
-  git checkout master
-  git pull origin master
-  git merge --no-ff $BRANCH
-  [[ $1 = 'push' || $2 = 'push' ]] && git push origin master
-fi
-
-if [[ $DEVELOP_EXISTS -eq 1 ]]; then
-  git checkout develop
-  git pull origin develop
-  git merge --no-ff $BRANCH
-  [[ $1 = 'push' || $2 = 'push' ]] && git push origin develop
-fi
+git checkout master
+git pull origin master
+git merge --no-ff $BRANCH
+[[ $1 = 'push' || $2 = 'push' ]] && git push origin master
 
 git branch -d $BRANCH                   # deletes local branch
 git push origin :$BRANCH 2> /dev/null   # deletes remote branch

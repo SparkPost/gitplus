@@ -3,28 +3,25 @@
 ##
 # Usage
 #
-# Start a hotfix/FAD-1234 branch (off master by default)
-# $ git start hotfix FAD-1234
+# Start a FAD-1234 branch (off master by default)
+# $ git start FAD-1234
 #
-# Start a feature/FAD-1234 branch (off develop by default)
-# $ git start feature FAD-1234
-#
-# Start a whatever/FAD-1234 branch off master, as specified
-# $ git start whatever FAD-1234 master
+# Start a FAD-1234 branch off master, as specified
+# $ git start FAD-1234 master
 #
 ##
 
 # exit on error
 set -e
 
-if [[ $1 = '' || $2 = '' ]]; then
-  echo "Please specify a type (e.g. hotfix) and name (e.g. FAD-1234)"
+if [[ $1 = '' ]]; then
+  echo "Please specify a name (e.g. FAD-1234)"
   exit 255
 fi
 
-[[ $1 = 'hotfix' ]] && BRANCH='master' || BRANCH='develop'
-[[ $3 != '' ]] && BRANCH=$3
+BRANCH='master'
+[[ $2 != '' ]] && BRANCH=$2
 
 git checkout $BRANCH
 git pull origin $BRANCH
-git checkout -b $1/$2
+git checkout -b $1
