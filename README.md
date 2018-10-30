@@ -30,15 +30,8 @@ Sort of like "flow <type> start <name>", but slightly different just to be confu
 Starts a `type/name` branch, usually a feature or hotfix, and starts from the correct starting branch for you.
 
 ```shell
-# start a hotfix (off of master by default)
-$ git start hotfix FAD-1234
-
-# start a feature (off of develop by default)
-$ git start feature FAD-1234
-
-# start whateveryouwant off of a specified branch
-$ git start whatever FAD-1234 master
-```
+# start branch (off of master)
+$ git start FAD-1234
 
 #### git finish
 
