@@ -25,17 +25,18 @@ Run **git plus upgrade** to easily pull the latest of this repo's origin/master 
 
 #### git start
 
-Sort of like "flow <type> start <name>", but slightly different just to be confusing.
+Sort of like `flow <type> start <name>`, but slightly different just to be confusing.
 
 Pulls from origin and starts a branch from master named `name`. 
 
 ```shell
 # start branch (off of master)
 $ git start FAD-1234
+```
 
 #### git finish
 
-Does a --no-ff merge to master.
+Does a `--no-ff` merge to master.
 
 Specify "push" as the last argument to auto-push merged branch.
 
