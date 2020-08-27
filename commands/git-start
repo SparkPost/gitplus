@@ -3,11 +3,11 @@
 ##
 # Usage
 #
-# Start a FAD-1234 branch (off master by default)
+# Start a FAD-1234 branch (off main by default)
 # $ git start FAD-1234
 #
-# Start a FAD-1234 branch off master, as specified
-# $ git start FAD-1234 master
+# Start a FAD-1234 branch off main, as specified
+# $ git start FAD-1234 main
 #
 ##
 
@@ -19,7 +19,7 @@ if [[ $1 = '' ]]; then
   exit 255
 fi
 
-BRANCH='master'
+BRANCH='main'
 [[ $2 != '' ]] && BRANCH=$2
 
 git checkout $BRANCH
