@@ -16,15 +16,15 @@ set -e
 BRANCH=$(git rev-parse --abbrev-ref HEAD)
 TYPE=$1
 
-if [[ $BRANCH = 'master' ]]; then
+if [[ $BRANCH = 'main' ]]; then
   echo "ugh don't finish $BRANCH"
   exit 255
 fi
 
-git checkout master
-git pull origin master
+git checkout main
+git pull origin main
 git merge --no-ff $BRANCH
-[[ $1 = 'push' || $2 = 'push' ]] && git push origin master
+[[ $1 = 'push' || $2 = 'push' ]] && git push origin main
 
 git branch -d $BRANCH                   # deletes local branch
 git push origin :$BRANCH 2> /dev/null   # deletes remote branch
