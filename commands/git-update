@@ -19,16 +19,16 @@ BRANCH=$(git rev-parse --abbrev-ref HEAD)
 TYPE=$1
 
 
-if [[ $BRANCH = 'main' ]]; then
-  echo "you can't update main silly"
+if [[ $BRANCH = 'master' ]]; then
+  echo "you can't update master silly"
   exit 255
 fi
 
 git fetch  # get new stuff
 
 if [[ $TYPE = 'rebase' ]]; then
-  git rebase origin/main
+  git rebase origin/master
 else
-  git merge origin/main
+  git merge origin/master
 fi
 

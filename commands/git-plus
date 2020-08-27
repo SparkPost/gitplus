@@ -12,10 +12,10 @@ NOCOLOR='\033[0m'
 if [[ "$CMD" == "upgrade" ]]; then
   # cd $(echo $PATH | tr ":" "\n" | grep gitplus)
   cd $(dirname $0)
-  git checkout main --quiet
-  git diff origin/main
-  git pull origin main --quiet
-  echo "\n${GREEN}👍  your gitplus is up to date with the latest from origin/main${NOCOLOR}\n"
+  git checkout master --quiet
+  git diff origin/master
+  git pull origin master --quiet
+  echo "\n${GREEN}👍  your gitplus is up to date with the latest from origin/master${NOCOLOR}\n"
 fi
 
 ECHOBLUE=`echo ${BLUE}`
