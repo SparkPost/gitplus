@@ -15,20 +15,20 @@ git fetch > /dev/null 2>&1
 # exit on error
 set -e
 
+DEFAULT_BRANCH=`git remote show origin | grep "HEAD branch" | awk '{print $3}'`
 BRANCH=$(git rev-parse --abbrev-ref HEAD)
 TYPE=$1
 
-
-if [[ $BRANCH = 'master' ]]; then
-  echo "you can't update master silly"
+if [[ $BRANCH = $DEFAULT_BRANCH ]]; then
+  echo "you can't update $DEFAULT_BRANCH silly"
   exit 255
 fi
 
 git fetch  # get new stuff
 
 if [[ $TYPE = 'rebase' ]]; then
-  git rebase origin/master
+  git rebase origin/$DEFAULT_BRANCH
 else
-  git merge origin/master
+  git merge origin/$DEFAULT_BRANCH
 fi
 

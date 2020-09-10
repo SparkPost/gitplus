@@ -7,15 +7,17 @@ GREEN='\033[0;32m'
 BLUE='\033[0;36m'
 NOCOLOR='\033[0m'
 
+DEFAULT_BRANCH=`git remote show origin | grep "HEAD branch" | awk '{print $3}'`
+
 # $ git plus upgrade
 # upgrades to latest version of gitplus
 if [[ "$CMD" == "upgrade" ]]; then
   # cd $(echo $PATH | tr ":" "\n" | grep gitplus)
   cd $(dirname $0)
-  git checkout master --quiet
-  git diff origin/master
-  git pull origin master --quiet
-  echo "\n${GREEN}👍  your gitplus is up to date with the latest from origin/master${NOCOLOR}\n"
+  git checkout $DEFAULT_BRANCH --quiet
+  git diff origin/$DEFAULT_BRANCH
+  git pull origin $DEFAULT_BRANCH --quiet
+  echo "\n${GREEN}👍  your gitplus is up to date with the latest from origin/$DEFAULT_BRANCH${NOCOLOR}\n"
 fi
 
 ECHOBLUE=`echo ${BLUE}`

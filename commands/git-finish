@@ -13,18 +13,19 @@ git fetch > /dev/null 2>&1
 # exit on error
 set -e
 
+DEFAULT_BRANCH=`git remote show origin | grep "HEAD branch" | awk '{print $3}'`
 BRANCH=$(git rev-parse --abbrev-ref HEAD)
 TYPE=$1
 
-if [[ $BRANCH = 'master' ]]; then
+if [[ $BRANCH = $DEFAULT_BRANCH ]]; then
   echo "ugh don't finish $BRANCH"
   exit 255
 fi
 
-git checkout master
-git pull origin master
+git checkout $DEFAULT_BRANCH
+git pull origin $DEFAULT_BRANCH
 git merge --no-ff $BRANCH
-[[ $1 = 'push' || $2 = 'push' ]] && git push origin master
+[[ $1 = 'push' || $2 = 'push' ]] && git push origin $DEFAULT_BRANCH
 
 git branch -d $BRANCH                   # deletes local branch
 git push origin :$BRANCH 2> /dev/null   # deletes remote branch
