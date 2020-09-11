@@ -17,9 +17,11 @@ export PATH=$PATH:<path/to/gitplus>/commands
 
 Once added, you'll probably need to source your profile file or start a new terminal window. Then you'll have access to the following commands.
 
+**Note: git plus commands will automatically use the repo's default branch if a specific branch is not specified.**
+
 #### git plus
 
-Run **git plus upgrade** to easily pull the latest of this repo's origin/master branch to your machine.
+Run **git plus upgrade** to easily pull the latest of this repo's origin/default branch to your machine.
 
 **git plus help** will cat the contents of this README
 
@@ -28,38 +30,38 @@ Run **git plus upgrade** to easily pull the latest of this repo's origin/master 
 Starts a branch.
 
 ```shell
-# start a branch (off master by default)
+# start a branch (off repo default branch by default)
 $ git start FAD-1234
 
-# start a branch off master, as specified
-$ git start FAD-1234 master
+# start a branch off main, as specified
+$ git start FAD-1234 main
 ```
 
 #### git finish
 
-Does a --no-ff merge to master.
+Does a --no-ff merge to default branch.
 
 Specify "push" as the last argument to auto-push merged branch(es).
 
 ```shell
-# Merge FAD-1234 to master
+# Merge FAD-1234 to default branch
 $ git finish
 
-# Merge to master and push merged branch to origin
+# Merge to default branch and push merged branch to origin
 $ git finish push
 ```
 
 #### git update
 
-Merges master into your current branch.
+Merges default branch into your current branch.
 
 Specify "rebase" to rebase the changes rather than merge them.
 
 ```shell
-# Merge master into your branch
+# Merge default branch into your branch
 $ git update
 
-# Rebase master into your branch
+# Rebase default branch into your branch
 $ git update rebase
 ```
 
